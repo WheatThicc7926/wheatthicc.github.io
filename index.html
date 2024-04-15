@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head> 
-<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Majors</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-	<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	<scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<scriptsrc="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<style> .btn{margin: 5px} </style>
+	<meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Majors</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+		<link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+		<scriptsrc="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<scriptsrc="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+		<style> .btn{margin: 5px} </style>
 </head>
 <body>
 <div class="container">
@@ -18,7 +18,8 @@
 </div>
 	<h3>We filter our dataset by major</h3>
 	<div id="majorTable"></div>
-	</body>
+</div>
+</body>
 	<script type="text/x-handlebars-template" id="majorTemplate">
 		<table class="table table-striped">
 			<tr><th>Name</th><th>Major</th><th>Midterm</th><th>Final</th></tr>
@@ -27,15 +28,14 @@
 				<td>{{name}}</td><td>{{major}}</td><td>{{midterm}}</td><td>{{final}}</td>
 				</tr>
 				{{/each}}
-			</table>
-			</script>
-	<script>async function getData(selected_major) {
+		</table>
+	</script>
+<script>async function getData(selected_major) {
 	var response = await fetch('cit5students.json'); 
 		if(response.ok) {
 			var data = await response.json();
 			majors = data.filter( (item) => item.major == selected_major ); 
-			var templateText =
-			document.getElementById('majorTemplate').innerHTML;
+			var templateText = document.getElementById('majorTemplate').innerHTML;
 			var compiledTemplateText = Handlebars.compile(templateText);  
 			codecompiledHtml = compiledTemplateText({ rows: majors }) 
 			document.getElementById('majorTable').innerHTML = compiledHtml;

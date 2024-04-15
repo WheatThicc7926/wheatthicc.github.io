@@ -30,17 +30,19 @@
 				{{/each}}
 		</table>
 	</script>
-<script>async function getData(selected_major) {
-	var response = await fetch('cit5students.json'); 
-		if(response.ok) {
-			var data = await response.json();
-			majors = data.filter( (item) => item.major == selected_major ); 
-			var templateText = document.getElementById('majorTemplate').innerHTML;
-			var compiledTemplateText = Handlebars.compile(templateText);  
-			codecompiledHtml = compiledTemplateText({ rows: majors }) 
-			document.getElementById('majorTable').innerHTML = compiledHtml;
-			}
-			else {document.querySelector('#majorTable').innerHTML = "There was an error";}
+	<script>async function getData(selected_major) {
+		var response = await fetch('cit5students.json'); 
+			if(response.ok) {
+				var data = await response.json();
+				majors = data.filter( (item) => item.major == selected_major ); 
+				var templateText = document.getElementById('majorTemplate').innerHTML;
+				var compiledTemplateText = Handlebars.compile(templateText);  
+				compiledHtml = compiledTemplateText({ rows: majors }) 
+				document.getElementById('majorTable').innerHTML = compiledHtml;
+				}
+				else {
+				document.querySelector('#majorTable').innerHTML = "There was an error";
+					}
 			}
 	</script>
 </html
